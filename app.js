@@ -10,26 +10,50 @@ const start = () => {
 }
 
 const showStatus = () => {
-  alert (`${name}! you have $${money}!`);
+  alert (`${name}! now you have $${money}!`);
 }
+
+const canIUpgrade = () => {
+  if (money >= 5){
+    showStatus();
+     const choice = prompt ("You have enough money to buy a pair of rusty scissors for $5! Would you like to buy them?", "yes or no");
+     if (choice === "yes") {
+      money -= 5;
+      alert ("With a pair of rusty scissors you can make $5 per day!!!");
+      rustyScissors();
+     } else {
+      alert ("But you will make more money with a pair of rusty scissors.......");
+    askForAction();
+     }
+  } else {
+    askForAction();
+  }
+}
+
 
 const askForAction = () => {
   showStatus();
   const choice = prompt ("Do you want to work today?", "yes or no");
   if (choice === "yes") {
-    yes();
+    money ++
+    canIUpgrade();
+    askForAction();
   } else {
-    no();
+    alert ("Come back tmr!!!");
+    askForAction();
   }
 }
 
-const yes = () => {
-  money ++;
-  askForAction();
-}
-
-const no = () => {
-  askForAction();
+const rustyScissors = () => {
+  showStatus();
+  const choice = prompt ("Do you want to work today with a pair of rusty scissors?", "yes or no");
+  if (choice === "yes") {
+    money += 5;
+    rustyScissors();
+  } else {
+    alert ("come back tmr!!!")
+    rustyScissors();
+  }
 }
 
 start();

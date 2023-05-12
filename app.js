@@ -81,6 +81,18 @@ const upgradeToStarvingStudents = () => {
   }
 }
 
+const youWinTheGame = () => {
+  if (money >= 1000) {
+    showStatus();
+    alert ("YOU WIN THE GAME!!!");
+    gameOver();
+  }
+}
+
+const byebye = () => {
+  gg();
+}
+
 const askForAction = () => {
   showStatus();
   const choice = prompt ("Do you want to work today?", "yes or no");
@@ -138,6 +150,7 @@ const starvingStudents = () => {
   const choice = prompt ("Do you want to work today with a team of starving students???", "yes or no");
   if (choice === "yes") {
     money += 250;
+    youWinTheGame();
     starvingStudents();
   } else {
     alert ("come back tmr!!!");
@@ -145,6 +158,17 @@ const starvingStudents = () => {
   }
 }
 
+const gameOver = () => {
+  alert ("GAME OVER");
+  const choice = prompt ("Would you like to restart the game?", "yes or no");
+  if (choice === "yes") {
+    alert ("lets start from the begining!!!");
+    start();
+  } else {
+    byebye();
+  }
+}
+
 start();
-  
+gg(); 
 

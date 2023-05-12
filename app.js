@@ -47,6 +47,23 @@ const upgradeToOldTimeyPushLawnmower = () => {
   }
 }
 
+const upgradeToBatteryPoweredLawnmower = () => {
+  if (money >= 250) {
+    showStatus();
+    const choice = prompt ("You have enough money to buy a battery-powered lawnmower for $250! Would you like to buy it?", "yes or no");
+    if (choice === "yes") {
+      money -= 250;
+      alert ("With a battery-powered lawnmower you can make $100 per day!");
+      batteryPoweredLawnmower();
+    } else {
+      alert ("But you will make more money with a battery-powered lawnmower......");
+      oldTimeyPushLawnmower();
+    }
+  } else {
+    oldTimeyPushLawnmower();
+  }     
+}
+
 const askForAction = () => {
   showStatus();
   const choice = prompt ("Do you want to work today?", "yes or no");
@@ -78,10 +95,23 @@ const oldTimeyPushLawnmower = () => {
   const choice = prompt ("Do you want to work today with an old-timey push lawnmower???", "yes or no");
   if (choice === "yes") {
     money += 50;
+    upgradeToBatteryPoweredLawnmower();
     oldTimeyPushLawnmower();
   } else {
     alert ("come back tmr!!!");
     oldTimeyPushLawnmower();
+  }
+}
+
+const batteryPoweredLawnmower = () => {
+  showStatus();
+  const choice = prompt ("Do you want to work today with a battery-powered lawnmower???", "yes or no");
+  if (choice === "yes") {
+    money += 100;
+    batteryPoweredLawnmower();
+  } else {
+    alert ("come back tmr!!!");
+    batteryPoweredLawnmower();
   }
 }
 

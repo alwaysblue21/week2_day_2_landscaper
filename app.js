@@ -13,8 +13,8 @@ const showStatus = () => {
   alert (`${name}! now you have $${money}!`);
 }
 
-const canIUpgrade = () => {
-  if (money >= 5){
+const upgradeToRustyScissors = () => {
+  if (money >= 5) {
     showStatus();
      const choice = prompt ("You have enough money to buy a pair of rusty scissors for $5! Would you like to buy them?", "yes or no");
      if (choice === "yes") {
@@ -30,13 +30,29 @@ const canIUpgrade = () => {
   }
 }
 
+const upgradeToOldTimeyPushLawnmower = () => {
+  if (money >= 25) {
+    showStatus();
+    const choice = prompt ("You have enough money to buy an old-timey push lawnmower for $25! Would you like to buy it?", "yes or no");
+    if (choice === "yes") {
+      money -= 25;
+      alert ("With an old-timey push lawnmower you can make $50 per day!!!");
+      oldTimeyPushLawnmower();
+    } else {
+      alert ("But you will make more money with an old-timey push lawnmower.....");
+      rustyScissors();
+    }
+  } else {
+    rustyScissors();
+  }
+}
 
 const askForAction = () => {
   showStatus();
   const choice = prompt ("Do you want to work today?", "yes or no");
   if (choice === "yes") {
     money ++
-    canIUpgrade();
+    upgradeToRustyScissors();
     askForAction();
   } else {
     alert ("Come back tmr!!!");
@@ -49,10 +65,23 @@ const rustyScissors = () => {
   const choice = prompt ("Do you want to work today with a pair of rusty scissors?", "yes or no");
   if (choice === "yes") {
     money += 5;
+    upgradeToOldTimeyPushLawnmower();
     rustyScissors();
   } else {
-    alert ("come back tmr!!!")
+    alert ("come back tmr!!!");
     rustyScissors();
+  }
+}
+
+const oldTimeyPushLawnmower = () => {
+  showStatus();
+  const choice = prompt ("Do you want to work today with an old-timey push lawnmower???", "yes or no");
+  if (choice === "yes") {
+    money += 50;
+    oldTimeyPushLawnmower();
+  } else {
+    alert ("come back tmr!!!");
+    oldTimeyPushLawnmower();
   }
 }
 

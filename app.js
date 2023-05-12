@@ -64,6 +64,23 @@ const upgradeToBatteryPoweredLawnmower = () => {
   }     
 }
 
+const upgradeToStarvingStudents = () => {
+  if (money >= 500) {
+    showStatus();
+    const choice = prompt ("you have enough money to hire a team of starving students for $500! would you like to hire them?", "yes or no");
+    if (choice === "yes") {
+      money -= 500;
+      alert ("With a team of starving students you can make $250 perday!");
+      starvingStudents();
+    } else {
+      alert ("But you will make more money with a team of starving students......");
+      batteryPoweredLawnmower();
+    }
+  } else {
+    batteryPoweredLawnmower();
+  }
+}
+
 const askForAction = () => {
   showStatus();
   const choice = prompt ("Do you want to work today?", "yes or no");
@@ -108,10 +125,23 @@ const batteryPoweredLawnmower = () => {
   const choice = prompt ("Do you want to work today with a battery-powered lawnmower???", "yes or no");
   if (choice === "yes") {
     money += 100;
+    upgradeToStarvingStudents();
     batteryPoweredLawnmower();
   } else {
     alert ("come back tmr!!!");
     batteryPoweredLawnmower();
+  }
+}
+
+const starvingStudents = () => {
+  showStatus();
+  const choice = prompt ("Do you want to work today with a team of starving students???", "yes or no");
+  if (choice === "yes") {
+    money += 250;
+    starvingStudents();
+  } else {
+    alert ("come back tmr!!!");
+    starvingStudents();
   }
 }
 
